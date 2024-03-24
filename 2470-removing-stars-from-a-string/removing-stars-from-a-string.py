@@ -3,7 +3,7 @@ class Solution:
         stack=[]
         for c in s:
             if c == '*':
-                if stack and stack[-1] != "*":
+                if stack:
                     stack.pop()
             else:
                 stack.append(c) 
