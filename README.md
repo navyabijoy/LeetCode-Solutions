@@ -4,5 +4,5 @@ Welcome to my LeetCode solutions repository! Here, you'll find my solutions to v
 
 ## Structure
 
-The repository is organized by LeetCode problem number. Each problem has its dedicated folder, containing the solution(s) and a README file with details about the problem and my approach.
+Each problem has its dedicated folder, containing the solution(s) and a README file with details about the problem and my approach.
 
