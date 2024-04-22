@@ -7,8 +7,8 @@ class Solution:
         for char in range(1, len(s)):
             if s[char] == s[char-1]:
                 count +=1
-            else:
                 res = max(res,count)
+
+            else:
                 count=1
-        res = max(res, count)
         return res
