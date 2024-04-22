@@ -5,7 +5,7 @@ class Solution:
             if num == 1:
                 windowSize += 1
             else:
-                #res = max(res, windowSize)
+                res = max(res, windowSize)
                 windowSize = 0
-            res = max(res, windowSize)
+        res = max(res, windowSize)
         return res
