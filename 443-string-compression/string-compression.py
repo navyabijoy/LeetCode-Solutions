@@ -11,12 +11,8 @@ class Solution:
             chars[write_index] = curr_char
             write_index += 1
 
-            if count > 1:
-                count_digits = []
-                while count > 0:
-                    count_digits.append(chr(ord('0') + count % 10))
-                    count //= 10
-                while count_digits:
-                    chars[write_index] = count_digits.pop()
+            if count >1:
+                for digit in str(count):
+                    chars[write_index] = digit
                     write_index += 1
         return write_index
