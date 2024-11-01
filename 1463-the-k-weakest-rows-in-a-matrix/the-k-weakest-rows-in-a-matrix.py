@@ -1,9 +1,17 @@
 class Solution:
     def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
-        temp = []
-        for i, m in enumerate(mat):
-            sol = (sum(m), i)
-            temp.append(sol)
+        def bs(arr):
+            left, right = 0, len(arr) -1
+            while left<= right:
+                mid = (left+right) // 2
+                if arr[mid] == 1:
+                    left = mid +1
+                else:
+                    right = mid - 1
+            return left
+        
+        queue = [(bs(row), idx) for idx, row in enumerate(mat)]
+        heapq.heapify(queue)
 
-        temp.sort()
-        return [i[1] for i in temp[:k]]
+        return [idx for _,idx in heapq.nsmallest(k, queue)]
+
