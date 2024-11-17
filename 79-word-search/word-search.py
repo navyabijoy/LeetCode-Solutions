@@ -3,24 +3,22 @@ class Solution:
         ROWS, COLS = len(board), len(board[0])
         path = set()
 
-        def dfs(r,c, i):
-            if i == len(word):
+        def backtrack(i,j,k):
+            if k == len(word):
                 return True
-            if (r < 0 or c < 0 or #r and c are less than 0
-                r >= ROWS or c >= COLS or #r and c are out of board
-                word[i] != board[r][c] or #if 
-                (r,c) in path): #if character is already in set
+            if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[k]:
                 return False
             
-            path.add((r,c))
-            res = (dfs(r + 1, c, i + 1)or
-                    dfs(r - 1, c, i + 1) or
-                    dfs(r, c + 1, i + 1) or
-                    dfs(r, c - 1, i + 1))
-            path.remove((r,c))
-            return res
+            temp = board[i][j]
+            board[i][j] = ''
+            
+            if backtrack(i+1, j, k+1) or backtrack(i-1, j, k+1) or backtrack(i, j+1, k+1) or backtrack(i, j-1, k+1):
+                return True
+            
+            board[i][j] = temp
+            return False
         for r in range(ROWS):
             for c in range(COLS):
-                if dfs(r,c,0):
+                if backtrack(r,c,0):
                     return True
         return False
