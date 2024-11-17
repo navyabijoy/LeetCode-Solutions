@@ -7,7 +7,7 @@ class Solution:
 
         def backtrack(i):
             if i == l:
-                if len(sol[:]) == k and sum(sol[:]) == n and sol[:] not in res:
+                if len(sol[:]) == k and sum(sol[:]) == n:
                     res.append(sol[:])
                 return
             
