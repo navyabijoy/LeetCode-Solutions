@@ -18,7 +18,13 @@ class Solution:
                         left = mid + 1
             return idx
         
-        left = binary_search(nums,target, True)
-        right = binary_search(nums, target, False)
-
-        return [left, right]
+        start_index = binary_search(nums, target, True)
+        
+        # If the target is not found, no need to search for the rightmost index
+        if start_index == -1:
+            return [-1, -1]
+        
+        # Find the rightmost index of the target
+        end_index = binary_search(nums, target, False)
+        
+        return [start_index, end_index]
