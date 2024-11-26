@@ -25,6 +25,7 @@ class Solution:
                 combination.append(letter)
                 backtrack(index+1, combination)
                 combination.pop()
+                
         backtrack(0,[])
         return res
             
