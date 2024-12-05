@@ -5,6 +5,13 @@ class Solution:
             if char not in count:
                 count[char] = 0
             count[char] += 1
-        sorted_chars = [char * freq for char, freq in sorted(count.items(), key=lambda x: x[1], reverse=True)]
-        return ''.join(sorted_chars)
+        buckets = defaultdict(list)
+
+        for char,cnt in count.items():
+            buckets[cnt].append(char)
+        res = []
+        for i in range(len(s),0,-1):
+            for c in buckets[i]:
+                res.append(c*i)
+        return ''.join(res)
         
