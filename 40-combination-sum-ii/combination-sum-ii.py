@@ -6,7 +6,7 @@ class Solution:
         def backtrack(cur,pos,target):
             if target == 0:
                 res.append(cur.copy())
-            if target <= 0:
+            if target < 0:
                 return
             prev = -1
 
