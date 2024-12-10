@@ -8,4 +8,5 @@ class Solution:
             else:
                 count = 0
             maxOnes = max(maxOnes, count)
+
         return maxOnes
