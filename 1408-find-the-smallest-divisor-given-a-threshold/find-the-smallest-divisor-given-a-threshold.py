@@ -1,3 +1,4 @@
+import math
 class Solution:
     def smallestDivisor(self, nums: List[int], threshold: int) -> int:
         left = 1
@@ -6,7 +7,7 @@ class Solution:
         def find_divisor(arr, thres, num):
             summ = 0
             for i in range(len(arr)):
-                summ += (arr[i] + num - 1 )// num
+                summ += math.ceil(arr[i]/num)
             return summ <= thres
 
         while left <= right:
