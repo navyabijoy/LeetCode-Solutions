@@ -5,13 +5,13 @@ class Solution:
         x = abs(x)
 
         while x > 0:
-            digit = x % 10
+            digit = x % 10 # returns the last gift hence a reversed number
             summ = summ * 10 + digit
             x = x // 10
         
-        summ *= sign
+        summ *= sign # gives the number the -ve or +ve sign
 
-        if summ > 2**31 - 1 or summ < - 2**31 - 1:
+        if summ > 2**31 - 1 or summ < - 2**31 - 1: #the result should be in the int range
             return 0
 
         return summ
