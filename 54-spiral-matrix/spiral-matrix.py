@@ -1,21 +1,35 @@
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        direction = 1
-        rows = len(matrix)
-        cols = len(matrix[0])
-        ans = []
-        row, col = 0, -1
+        res = []
+        if len(matrix) == 0:
+            return res
+        row_begin = 0
+        col_begin = 0
+        row_end = len(matrix)-1 
+        col_end = len(matrix[0])-1
+        while (row_begin <= row_end and col_begin <= col_end):
+            # goes from left -> right in the same row
+            for i in range(col_begin,col_end+1):
+                res.append(matrix[row_begin][i]) #the row is static
+            row_begin += 1 #row moves down
 
-        while rows > 0 and cols > 0:
-            for _ in range(cols):
-                col += direction
-                ans.append(matrix[row][col])
-            rows -= 1
+            # goes from top -> bottom in the same col
+            
+            for i in range(row_begin,row_end+1):
+                res.append(matrix[i][col_end]) #the column is static
+            col_end -= 1 #column comes to the left
 
-            for _ in range(rows):
-                row += direction
-                ans.append(matrix[row][col])
-            cols -= 1
+            # goes from right -> left in the same row
+            if (row_begin <= row_end):
 
-            direction *= -1
-        return ans
+                for i in range(col_end,col_begin-1,-1):
+                    res.append(matrix[row_end][i]) #row is static
+                row_end -= 1 #move the row end upwards
+
+            # goes from bottom -> top in the same col
+            if (col_begin <= col_end):
+                for i in range(row_end,row_begin-1,-1):
+                    res.append(matrix[i][col_begin]) #col is static
+                col_begin += 1 #move the column towards right
+
+        return res
