@@ -1,0 +1,20 @@
+class Solution:
+    # your task is to complete this function
+    # function sort the stack such that top element is max
+    # funciton should return nothing
+    # s is a stack
+
+    def Sortit(self,s,ele):
+        if not s or s[-1] <= ele: #if top of stack is less than element then append
+            s.append(ele)
+        else:
+            temp = s.pop()
+            self.Sortit(s,ele)
+            s.append(temp)
+            
+    def Sorted(self,s): #pre defined function
+        if s:
+            temp =s.pop(0)
+            self.Sorted(s)
+            self.Sortit(s,temp)
+        
