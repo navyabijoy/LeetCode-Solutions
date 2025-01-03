@@ -24,7 +24,7 @@ class Solution:
             #find the min from right subtree
             curr = root.right
             while curr.left:
-                curr = curr.left
+                curr = curr.left # go to the left most node
             root.val = curr.val # root is the node that is supposed to be deleted
             root.right = self.deleteNode(root.right, root.val)
         return root
