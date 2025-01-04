@@ -15,5 +15,6 @@ class Solution:
                 middle_char = set(s[first[char]+1:last[char]])
 
                 for m in middle_char:
-                    result.add(char+m+char)
+                    result.add(char+m+char) 
+                    # we store the char and the m to avoid removing duplicates in other pairs
         return len(result)
