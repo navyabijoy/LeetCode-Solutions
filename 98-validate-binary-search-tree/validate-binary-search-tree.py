@@ -21,5 +21,8 @@ class Solution:
         inorder(root)
         for i in range(1,len(res)):
             if res[i] <= res[i-1]:
+                 # inorder is supposed to write the array in ascending order for BST
+                 # now if the number before the current number is greater than the current number
+                 # then the tree is NOT bst
                 return False
         return True
