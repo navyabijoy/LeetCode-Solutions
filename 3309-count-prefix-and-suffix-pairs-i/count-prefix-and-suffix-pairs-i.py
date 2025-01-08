@@ -3,14 +3,10 @@ class Solution:
 
         count = 0
 
-        def isPrefixAndSuffix(s1,s2):
-            if s2.startswith(s1) and s2.endswith(s1):
-                return True
-            return False
-
         for i in range(len(words)):
             for j in range(i+1,len(words)):
-                if isPrefixAndSuffix(words[i], words[j]):
+                s1, s2 = words[i], words[j]
+                if s2.startswith(s1) and s2.endswith(s1):
                     count += 1
             
         return count
