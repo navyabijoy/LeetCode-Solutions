@@ -25,3 +25,6 @@ class Solution:
                     fresh -= 1
             time += 1
         return time if fresh == 0 else -1
+
+        # TC: O(n*m)
+        # SC: O(n*m)
