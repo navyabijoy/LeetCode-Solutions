@@ -19,7 +19,8 @@ class Solution:
                 for dr, dc in directions:
                     row, col = r + dr, c + dc
                     if(row < 0 or row == len(grid) or col < 0 or col == COLS or grid[row][col] != 1):
-                        continue
+                        continue 
+                # skip the loop if the row and col is out of bounds and the orange is not fresh to make it rotten
                     grid[row][col] = 2
                     q.append([row, col])
                     fresh -= 1
