@@ -1,14 +1,16 @@
 class Solution:
     def minimumLength(self, s: str) -> int:
-        char_frequency = [0] * 26
-        total_length = 0
-        for char in s:
-            char_frequency[ord(char) - ord('a')] += 1
-        for frequency in char_frequency:
-            if frequency == 0:
-                continue
-            if frequency % 2 == 0:
-                total_length += 2
+        seen = {} # create a hashmap 
+        for i in range(len(s)):
+            if s[i] not in seen:
+                seen[s[i]] = 0
+            seen[s[i]] += 1
+
+        output = 0
+        # now we have frequency of each character
+        for idx, val in seen.items():
+            if val % 2 == 0:
+                output += 2
             else:
-                total_length += 1
-        return total_length
+                output += 1
+        return output
