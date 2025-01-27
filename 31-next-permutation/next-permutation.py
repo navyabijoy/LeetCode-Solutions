@@ -16,8 +16,7 @@ class Solution:
             A.reverse()
             return A
 
-        # Step 2: Find the next greater element
-        #         and swap it with arr[ind]:
+        # Step 2: Find the next greater element and swap it with arr[ind]:
         for i in range(n - 1, ind, -1):
             if A[i] > A[ind]:
                 A[i], A[ind] = A[ind], A[i]
