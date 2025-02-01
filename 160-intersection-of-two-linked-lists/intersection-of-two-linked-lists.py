@@ -7,9 +7,12 @@
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         store = set()
+        # storing the node itself, by iterating one of the lists entirely
         while headA:
             store.add(headA)
             headA = headA.next
+
+        # iterating through the other list, if that node is present then it returns that node
         while headB:
             if headB in store:
                 return headB
