@@ -7,7 +7,7 @@ class Solution:
         prev2 = 0
         prev1 = nums[0]
         for i in range(1,n):
-            pick =  nums[i%n] + prev2
+            pick =  nums[i] + prev2
             not_pick = prev1
             curr = max(pick, not_pick)
             prev2 = prev1
