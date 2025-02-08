@@ -1,9 +1,14 @@
 class Solution:
     def fib(self, n: int) -> int:
-        a,b=0,1
-        if n == 0:
-            return a
-        elif n==1 or n==2:
-            return b
-        else:
-            return self.fib(n-1) + self.fib(n-2)
+        dp = [-1] * (n+1) # create an n+1 size 1D Array
+
+        if n <= 1:
+            return n
+        # AFTER the base case, check if the value is occupied
+        if dp[n] != -1:
+            return dp[n]
+
+        # agar the value is -1 then store the value of dp[n]
+        dp[n] = self.fib(n-1) + self.fib(n-2)
+        return dp[n]
+            
