@@ -1,5 +1,5 @@
 class Solution:
-    # top down approach
+    # top down approach + memoization
     def helper(self,cost, n,dp):
 
         if n == 0: # at the 0th step
