@@ -1,16 +1,14 @@
 class Solution:
-    # top down approach + memoization
+    # bottom up approach -> tabulation
     def helper(self,cost, n,dp):
 
-        if n == 0: # at the 0th step
-            return cost[0]
-        if n == 1: # at the first step
-            return cost[1]
-        if dp[n] != -1:
-            return dp[n]
+        dp[0] = cost[0]
+        dp[1] = cost[1]
+        
         # adds the cost of the current step, then chooses the step
         # where the step cost is minimum
-        dp[n] = cost[n] + min(self.helper(cost,n-1,dp),self.helper(cost,n-2,dp))
+        for i in range(2,n+1):
+            dp[i] = cost[i] + min(dp[i-1],dp[i-2])
         return dp[n]
 
     def minCostClimbingStairs(self, cost: List[int]) -> int:
