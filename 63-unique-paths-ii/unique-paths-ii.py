@@ -1,20 +1,26 @@
 class Solution:
-    def helper(self,mat,i,j,dp):
-        if i < 0 or j < 0 or mat[i][j] == 1:
-            return 0 # out of bounds
-
-        if i == 0 and j == 0:
-            return 1 # we have reached the top grid
-        if dp[i][j] != -1:
-            return dp[i][j]
-        # we start from the right most corner and then proceed to subtract 
-        up = self.helper(mat,i-1,j,dp)
-        left = self.helper(mat,i,j-1,dp) 
-        dp[i][j] = up + left
-        return dp[i][j]
+    def helper(self,mat,i,j):
+        # if the starting cell has an obstacle
+        if mat[0][0] == 1:
+            return 0
+        curr = [0] * j
+        prev = [0] * j
+        for r in range(i):
+            for c in range(j):
+                if mat[r][c] == 1:
+                    curr[c] = 0
+                    continue
+                if r == 0 and c == 0:
+                    curr[0] = 1
+                    continue
+                up = prev[c] if r > 0 else 0
+                left = curr[c-1] if c> 0 else 0
+                curr[c] = up +left
+            prev = curr[:]
+    
+        return prev[j-1]
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        r = len(obstacleGrid)
-        c = len(obstacleGrid[0])
-        dp =[[-1] * c for _ in range(r)]
-        ans = self.helper(obstacleGrid,r-1,c-1,dp)
+        row = len(obstacleGrid)
+        col = len(obstacleGrid[0])
+        ans = self.helper(obstacleGrid,row,col)
         return ans
