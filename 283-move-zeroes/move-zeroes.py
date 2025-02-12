@@ -3,13 +3,10 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        n=len(nums)
-        slow = 0 #two pointer method, slow one traverses after the fast one
-        for fast in range(n): #the fast pointer traverses the array
-            if nums[fast]!=0 and nums[slow]==0: #if the value at slow is 0 and the value at fast is non zero
-                nums[slow],nums[fast]=nums[fast],nums[slow] #swap the values
-               
-            
-            if nums[slow] != 0: #if the value at slow is non zero, increment slow
-                slow +=1
-            
+        left = 0
+        for right in range(len(nums)):
+            if nums[left] == 0 and nums[right] != 0:
+                nums[left],nums[right] = nums[right],nums[left]
+            if nums[left] != 0:
+                left += 1
+        return nums        
