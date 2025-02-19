@@ -1,19 +1,18 @@
 class Solution:
-    def helper(self,grid,m,n,dp):
-        if m == 0 and n == 0:
-            return grid[0][0]
-        if m < 0 or n < 0:
+    def helper(self,mat,i,j,dp):
+        if i == 0 and j == 0:
+            return mat[i][j]
+        if i < 0 or j < 0:
             return float('inf')
-        if dp[m][n] != -1:
-            return dp[m][n]
-
-
-        up=grid[m][n] + self.helper(grid,m-1,n,dp)
-        left=grid[m][n] + self.helper(grid,m,n-1,dp)
-        dp[m][n] = min(up,left)
-        return dp[m][n]
+        if dp[i][j] != -1:
+            return dp[i][j]
+        up = mat[i][j] + self.helper(mat,i-1,j,dp)
+        left = mat[i][j] + self.helper(mat,i,j-1,dp)
+        dp[i][j] = min(up,left)
+        return dp[i][j]
 
     def minPathSum(self, grid: List[List[int]]) -> int:
-        r, c = len(grid),len(grid[0])
-        dp = [ [-1] * c for _ in range(r)]
-        return self.helper(grid,r-1,c-1,dp)
+        m = len(grid)
+        n = len(grid[0])
+        dp = [[-1] * n for _ in range(m)]
+        return self.helper(grid,m-1,n-1,dp)
