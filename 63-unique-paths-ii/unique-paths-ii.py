@@ -1,26 +1,18 @@
 class Solution:
-    def helper(self,mat,i,j):
-        # if the starting cell has an obstacle
-        if mat[0][0] == 1:
+    def helper(self, mat, r, c,dp):
+        if r < 0 or c < 0 or mat[r][c] == 1:
             return 0
-        curr = [0] * j
-        prev = [0] * j
-        for r in range(i):
-            for c in range(j):
-                if mat[r][c] == 1:
-                    curr[c] = 0
-                    continue
-                if r == 0 and c == 0:
-                    curr[0] = 1
-                    continue
-                up = prev[c] if r > 0 else 0
-                left = curr[c-1] if c> 0 else 0
-                curr[c] = up +left
-            prev = curr[:]
-    
-        return prev[j-1]
+        if r == 0 and c == 0:
+            return 1
+        
+        if dp[r][c] != -1:
+            return dp[r][c]
+        up = self.helper(mat,r-1, c,dp)
+        left = self.helper(mat,r,c-1,dp)
+        dp[r][c] = up + left
+        return dp[r][c]
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        row = len(obstacleGrid)
-        col = len(obstacleGrid[0])
-        ans = self.helper(obstacleGrid,row,col)
-        return ans
+        m = len(obstacleGrid)
+        n = len(obstacleGrid[0])
+        dp = [[-1]*n for _ in range(m)]
+        return self.helper(obstacleGrid,m-1,n-1,dp)
