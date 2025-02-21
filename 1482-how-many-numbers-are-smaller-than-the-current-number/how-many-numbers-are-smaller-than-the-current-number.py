@@ -1,12 +1,12 @@
 class Solution:
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
         temp = sorted(nums)
-        d = {}
-        for i,v in enumerate(temp):
-            if v not in d:
-                d[v] = i
-        res = []
-        for i in nums:
-            res.append(d[i])
-        return res
+        track = {}
+        for i in range(len(temp)):
+            if temp[i] not in track:
+                track[temp[i]] = i
 
+        res = []
+        for num in nums:
+            res.append(track[num])
+        return res
