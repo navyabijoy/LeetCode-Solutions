@@ -4,6 +4,6 @@ class Solution:
         for i in range(len(nums)):
             diff = target - nums[i]
             if diff in seen:
-                return [i, seen[diff]]
+                return [seen[diff],i]
             seen[nums[i]] = i
-        return []
+
