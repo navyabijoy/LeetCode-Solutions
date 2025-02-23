@@ -1,6 +1,6 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if not s or not t:
+        if len(s) < len(t):
             return ""
 
         min_len = float('inf')
