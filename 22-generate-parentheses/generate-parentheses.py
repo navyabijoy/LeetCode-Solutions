@@ -1,26 +1,22 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        #only add open parenthese if open < n
-        #only add closing parenthese if close < open
-        #close when close == open == n
-
-        stack = []
         res = []
-        def backtrack (openN,closedN):
+        stack = []
+        
+        def backtrack(openN, closedN):
             if openN == closedN == n:
                 res.append("".join(stack))
                 return
 
-            if openN < n:
+            if openN < n: # there are less open brackets
                 stack.append("(")
-                backtrack(openN + 1, closedN)
+                backtrack(openN+1, closedN)
+                stack.pop() # backtrack
+
+            if closedN < openN: # if there are less closed brackets compared to open
+                stack.append(")")
+                backtrack(openN, closedN+1)
                 stack.pop()
 
-            if closedN < openN:
-                stack.append(")")
-                backtrack(openN, closedN + 1)
-                stack.pop()
-                
         backtrack(0,0)
         return res
-        
