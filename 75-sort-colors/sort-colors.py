@@ -4,15 +4,16 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         left = 0
-        right = len(nums)-1
-        curr = 0
-        while curr <= right:
-            if nums[curr] == 0:
-                nums[left],nums[curr] = nums[curr],nums[left]
+        right = len(nums) - 1
+        i = 0
+        while i <= right:
+            if nums[i] == 0:
+                nums[left],nums[i] = nums[i],nums[left]
                 left += 1
-            elif nums[curr] == 2:
-                nums[right],nums[curr]= nums[curr],nums[right]
+            elif nums[i] == 2:
+                nums[right],nums[i] = nums[i], nums[right]
                 right -= 1
-                curr-=1
-            curr += 1
+                i -= 1
+            i+=1
 
+        
