@@ -1,19 +1,30 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        st = set()
-        temp = []
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                # hs = set()
-                for k in range(j+1, len(nums)):
-                    total = nums[i] + nums[j] + nums[k]
-                    fourth = target - total
-                    if fourth in nums[k+1:]:
-                        temp = [nums[i],nums[j],nums[k],fourth]
-                        temp.sort()
-                        st.add(tuple(temp))
-                    # hs.add(nums[k])
-        ans = [list(t) for t in st]
+        nums.sort()
+        ans = []
+        n = len(nums)
+        for i in range(n):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            for j in range(i+1,n):
+                if j > i+1 and nums[j] == nums[j-1]:
+                    continue
+                left = j+1
+                right = n-1
+                while left < right:
+                    total = nums[i] + nums[j] + nums[right] + nums[left]
+                    if (total == target):
+                        ans.append([nums[i],nums[j],nums[left],nums[right]])
+                        while left < right and nums[left] == nums[left+1]:
+                            left += 1
+                        while left < right and nums[right] == nums[right-1]:
+                            right -= 1
+                        left += 1
+                        right -= 1
+                    elif total > target:
+                        right -= 1
+                    else:
+                        left += 1
         return ans
 
 
