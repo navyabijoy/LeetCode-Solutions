@@ -1,31 +1,27 @@
 class Solution:
-    def helper(self, idx, arr, n, target,dp):
-        # base cases
-        if idx >= n:
-            return False
+    def solve(self,index, nums, target):
+        dp = [[False] * (target+1) for _ in range(len(nums)+1)]
+        
+        for i in range(len(nums)+1):
+            dp[i][0] = True
+        
+        for index in range(len(nums)-1,-1,-1):
+            for t in range(1, target+1):
+                incl = False
+                if(t - nums[index] >= 0):
+                    incl = dp[index+1][t - nums[index]]
+                excl = dp[index+1][t]
+                dp[index][t] = incl or excl
 
-        if target < 0:
+        return dp[0][target]
+        
+    def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        N = len(nums)
+        
+        if total % 2 != 0:
             return False
         
-        if target == 0:
-            return True
-
-        if dp[idx][target] != -1: # step 3
-            return dp[idx][target]
-
-        pick = self.helper(idx+1, arr, n, target - arr[idx],dp)
-        notPick = self.helper(idx+1, arr, n, target - 0,dp)
-        dp[idx][target] =  pick or notPick # step 2
-        return dp[idx][target]
-
-    def canPartition(self, nums: List[int]) -> bool:
-        N = len(nums)
-        total = sum(nums)
-
-        if total % 2 != 0: #its odd
-            return False # array cant be split
-
         target = total // 2
-        dp = [[-1] * (target + 1) for _ in range(N)]  # step 1
-        return self.helper(0,nums,N,target,dp)
-    
+
+        return self.solve(0,nums,target)
