@@ -1,15 +1,8 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        newStr = []
-        for i in range(len(s)):
-            if s[i].isalnum():
-                newStr.append(s[i].lower())
-
-        left= 0
-        right = len(newStr) - 1
-        while left <= right:
-            if newStr[left] != newStr[right]:
-                return False
-            left += 1
-            right -= 1
-        return True
+        newSentence = ""
+        for c in s:
+            if c.isalnum(): 
+#checks if all the characters in a given string are alphanumeric. Alphanumeric characters include letters (a-z, A-Z) and numbers (0-9).
+                newSentence += c.lower()
+        return newSentence == newSentence[::-1]
