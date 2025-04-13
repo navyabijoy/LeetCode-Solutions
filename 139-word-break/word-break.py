@@ -9,7 +9,8 @@ class Solution:
             if s in memo:
                 return memo[s]
 
-            for word in wordDict: #traversing through each word in dictionary
+            for word in wordDict:
+                #traversing through each word in dictionary
                 if s.startswith(word):
                     if helper(s[len(word):]):
                         memo[s] = True
