@@ -3,12 +3,12 @@ class Solution:
         if len(s) < 10:
             return []
         res = []
-        final = set()
+        trackDuplicates = set()
         for i in range(len(s)-9):
-            seq = s[i:i+10]
-            if seq in final:
-                if seq not in res:
-                    res.append(seq)
+            seqeunce = s[i:i+10]
+            if seqeunce in trackDuplicates:
+                if seqeunce not in res:
+                    res.append(seqeunce)
             else:
-                final.add(seq)
+                trackDuplicates.add(seqeunce)
         return res
