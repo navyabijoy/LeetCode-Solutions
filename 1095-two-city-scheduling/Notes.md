@@ -1,1 +1,1 @@
-<h2>two-city-scheduling Notes</h2><hr>[ Time taken: 30 m 18 s ]
+<h2>two-city-scheduling Notes</h2><hr>[ Time taken: 13 m 44 s ]
