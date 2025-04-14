@@ -1,7 +1,7 @@
 class Solution:
     def binarySearch(self,nums,target):
         left = 0
-        right = len(nums)-1
+        right = len(nums) - 1
         while left <= right:
             mid = (left+right) // 2
             if nums[mid] == target:
@@ -17,21 +17,21 @@ class Solution:
             return arr
         if x < arr[0]:
             return arr[:k]
-        if x > arr[len(arr)-1]:
+        if x > arr[-1]:
             return arr[-k:]
 
         find_closest = self.binarySearch(arr,x)
 
         window_left = find_closest-1
         window_right = find_closest
-        while (window_right -  window_left - 1) < k:
+        while (window_right - window_left - 1) < k:
             if window_left == -1:
                 window_right += 1
                 continue
             
-            if window_right == len(arr) or abs(arr[window_left] - x) <= abs(arr[window_right] - x):
-                window_left -= 1
+            if window_right == len(arr) or abs(arr[window_left]-x) <= abs(arr[window_right]-x):
+                window_left -= 1 # subtracting means the left index will be included
             else:
-                window_right += 1
+                window_right += 1 # adding to right means the right index will be included
+
         return arr[window_left+1:window_right]
-    
