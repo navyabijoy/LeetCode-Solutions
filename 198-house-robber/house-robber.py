@@ -1,14 +1,15 @@
 class Solution:
+    def solve(self,arr,index,dp):
+        if index >= len(arr):
+            return 0
+        if dp[index] != -1:
+            return dp[index]
+        pick = arr[index] + self.solve(arr,index+2,dp)
+        notPick = self.solve(arr,index+1,dp)
+        dp[index] = max(pick,notPick)
+        return dp[index]
+
     def rob(self, nums: List[int]) -> int:
         n = len(nums)
-        one = nums[0]
-        two = 0
-        for i in range(1, n):
-            pick = nums[i]
-            if ( i > 1):
-                pick += two
-            notPick = 0 + one
-            curr = max(pick, notPick)
-            two = one
-            one = curr
-        return one
+        dp = [-1] * n
+        return self.solve(nums,0,dp)
