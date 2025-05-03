@@ -1,25 +1,26 @@
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
-        ROWS, COLS = len(image), len(image[0])
-        ans = image
-        initial = ans[sr][sc] # this is the initial color 
+        m = len(image)
+        n = len(image[0])
+        temp = image[sr][sc]
+        if temp == color:
+            return image
 
-        if initial == color :
-            return ans
+        def backtrack(r,c):
+            if r >= m or c >= n or r < 0 or c < 0:
+                return
 
-        q = deque()
-        q.append([sr, sc])
+            if image[r][c] != temp:
+                return
+            
+            image[r][c] = color
 
-        directions = [[1,0],[-1,0],[0,1],[0,-1]]
+            direction = [[0,1],[0,-1],[1,0],[-1,0]]
+            for track in direction:
+                newRow = r + track[0]
+                newCol = c + track[1]
+                 # the cell should be the same as the org color
+                backtrack(newRow,newCol)
 
-        while q:
-            r,c = q.popleft()
-            ans[r][c] = color
-
-            for dr, dc in directions:
-                row, col = r + dr, c + dc
-                # Check if the neighbor is valid and has the initial color
-                if 0 <= row < ROWS and 0 <= col < COLS and ans[row][col] == initial:
-                    q.append([row, col])
-
-        return ans
+        backtrack(sr,sc)
+        return image
