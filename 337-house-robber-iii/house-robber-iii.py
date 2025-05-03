@@ -7,7 +7,7 @@
 class Solution:
     def helper(self,curr,dp):
         if curr is None:
-            return 0 # hashmap structure, (key,value) thing
+            return 0 
 
         if curr in dp:
             return dp[curr]
