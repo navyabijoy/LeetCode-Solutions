@@ -6,7 +6,9 @@ class Solution {
         for(int r = 0; r < m; r++){
             for(int c = 0; c < n; c++){
                 if(grid[r][c] < 0){
-                    count++;
+                    // if one element is encountered to be -ve, rest are also -ve
+                    count += grid[r].length - c; 
+                    break;
                 }
             }
         }
