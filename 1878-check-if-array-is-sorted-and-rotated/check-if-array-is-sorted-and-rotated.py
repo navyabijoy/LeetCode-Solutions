@@ -4,8 +4,4 @@ class Solution:
         for i in range(len(nums)):
             if nums[i-1] > nums[i]:
                 count += 1
-
-        if count <= 1:
-            return True
-        else:
-            return False
+        return True if count <= 1 else False
