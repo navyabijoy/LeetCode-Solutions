@@ -1,16 +1,21 @@
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
-        i = 0
-        n = len(nums)
-        while i < n:
-            correct = nums[i]
-            if correct < n and nums[i] != nums[correct]:
-                nums[i],nums[correct] = nums[correct],nums[i]
+    def binary_search(self, arr, target):
+        left= 0
+        right = len(arr) -1
+        while left <= right:
+            mid = (left + right) // 2
+            if arr[mid] == target:
+                return True
+            elif arr[mid] < target:
+                left = mid + 1
             else:
-                i += 1
+                right = mid - 1
+        return False
 
-        for i in range(n):
-            if nums[i] != i:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        nums.sort()
+        for i in range(n+1):
+            if not self.binary_search(nums, i):
                 return i
         return n
-      
