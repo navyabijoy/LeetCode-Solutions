@@ -6,6 +6,7 @@ class Solution:
                 count[nums[i]] += 1
             else:
                 count[nums[i]] = 1
-        for num, freq in count.items():
-            if freq > ((len(nums)) // 2):
-                return num
+            
+            if count[nums[i]] > ((len(nums)) // 2):
+                return nums[i]
+            
