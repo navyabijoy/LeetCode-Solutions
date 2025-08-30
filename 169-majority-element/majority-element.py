@@ -1,16 +1,11 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        maxFreq = 0
-        seen = {}
-        majNum = None
+        count = {}
         for i in range(len(nums)):
-            if nums[i] not in seen:
-                seen[nums[i]] = 0
-            seen[nums[i]] += 1
-        
-        for num,freq in seen.items():
-            if maxFreq < freq:
-                maxFreq = freq
-                majNum = num
-        return majNum
-            
+            if nums[i] in count:
+                count[nums[i]] += 1
+            else:
+                count[nums[i]] = 1
+        for num, freq in count.items():
+            if freq > ((len(nums)) // 2):
+                return num
