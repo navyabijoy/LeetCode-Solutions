@@ -3,21 +3,19 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        # better solution
-        rows = [0] * len(matrix) #O(m)
-        cols = [0] * len(matrix[0]) #O(n)
-        for r in range (len(rows)):
-            for c in range(len(cols)): #O(m*n)
-                if matrix[r][c] == 0:
-                    rows[r] = 1
-                    cols[c] = 1
+        col = len(matrix[0])
+        row = len(matrix)
+        rowZeroAt = []
+        colZeroAt = []
+        for i in range(row):
+            for j in range(col):
+                if matrix[i][j] == 0:
+                    rowZeroAt.append(i)
+                    colZeroAt.append(j)
 
-        for r in range (len(rows)):
-            for c in range(len(cols)): # + O(m*n)
-                if rows[r] == 1 or cols[c]==1:
-                    matrix[r][c] = 0
-
-        #space: O(m) + O(n)
-        #time: O(2*m*n)
-        return matrix
+        for i in range(row):
+            for j in range(col):
+                if i in rowZeroAt or j in colZeroAt:
+                    matrix[i][j] = 0
         
+        return matrix
