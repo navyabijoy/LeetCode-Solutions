@@ -1,22 +1,45 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> bool:
-        low = 0
-        high = len(nums) - 1
-        while low <= high:
-            mid = (low + high) // 2
-            if nums[mid] == target:
+        # l = 0
+        # r = len(nums) - 1
+        # while l < r:
+        #     m = (l+r) // 2
+        #     if nums[m] == target:
+        #         return True
+            
+        #     if nums[l] == nums[m] == nums[r]:
+        #         l += 1
+        #         r -= 1
+            
+        #     elif nums[l] <= nums[m]: # left side sorted
+        #         if nums[l] <= target < nums[m]:
+        #             r = m - 1
+        #         else:
+        #             l = m + 1
+
+        #     else: #right side sorted
+        #         if nums[m] < target <= nums[r]:
+        #             l = m + 1
+        #         else:
+        #             r = m - 1
+        # return False
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            m = (l + r) // 2
+            if nums[m] == target:
                 return True
-            if nums[low] == nums[mid] == nums[high]:
-                low += 1
-                high -= 1
-            elif nums[low] <= nums[mid]:
-                if nums[low] <= target and target <= nums[mid]:
-                    high = mid - 1
+
+            if nums[l] == nums[m] == nums[r]:
+                l += 1
+                r -= 1
+            elif nums[l] <= nums[m]:  # left side sorted
+                if nums[l] <= target < nums[m]:
+                    r = m - 1
                 else:
-                    low = mid + 1
-            else:
-                if nums[mid] <= target <= nums[high]:
-                    low = mid + 1
+                    l = m + 1
+            else:  # right side sorted
+                if nums[m] < target <= nums[r]:
+                    l = m + 1
                 else:
-                    high = mid - 1 
+                    r = m - 1
         return False
