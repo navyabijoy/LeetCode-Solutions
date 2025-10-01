@@ -1,20 +1,25 @@
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        track = {}
         stack = []
-        sample = {}
+        maxEle = -1
         for num in reversed(nums2):
             while stack and stack[-1] <= num:
-                stack.pop() # to get the highest number on the top
+                stack.pop()
             
             if stack:
-                sample[num] = stack[-1]
+                track[num] = stack[-1]
             else:
-                sample[num] = -1
+                track[num] = -1
+            
 
             stack.append(num)
+        
         final = []
 
-        for num in nums1:
-            if num in sample:
-                final.append(sample[num])
+        for m in nums1:
+            if m in track:
+                final.append(track[m])
+        
         return final
+            
