@@ -1,25 +1,26 @@
 class Solution:
-    def helper(self,coins,amt,dp):
-        if amt == 0: # base case - amount has become 0 after all the needed subtraction
+    def solve(self,coins, amount,dp):
+       
+        if amount ==  0:
             return 0
-        if amt < 0: # when it was subtracted more than needed of number were huge
+        if amount < 0:
             return float('inf')
-        if dp[amt]!= -1:
-            return dp[amt]
+        if dp[amount] != -1:
+            return dp[amount]
 
         mini = float('inf')
-        
         for coin in coins:
-            # subtract the value of the current coin from the target
-            ans = self.helper(coins, amt-coin,dp) 
-            if ans != float('inf'):
-                mini = min(mini, ans+1) 
-        dp[amt] = mini
+            total = self.solve(coins, amount-coin,dp)
+            if total != float('inf'):
+                mini = min(mini, 1+total)
+        dp[amount] = mini
         return mini
+    
 
     def coinChange(self, coins: List[int], amount: int) -> int:
         dp = [-1] * (amount+1)
-        ans = self.helper(coins,amount,dp)
+        ans = self.solve(coins, amount, dp)
+        
         if ans == float('inf'):
             return -1
         return ans
