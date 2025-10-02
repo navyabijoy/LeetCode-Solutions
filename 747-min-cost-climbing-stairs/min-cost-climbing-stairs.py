@@ -1,21 +1,20 @@
 class Solution:
-    def solve(self,cost,n,dp):
-        # step 1: base case 
-        if n == 0:
-            dp[0] = cost[0]
-        if n == 1:
-            dp[1] = cost[1]
+    def solve(self,cost,n):
+        # step 1: create dp array
+        dp = [-1] * (n+1)
 
-        # step 2: after defining base case, check if the n value is present in dp array
-        if dp[n] != -1:
-            return dp[n]
+        # step 2: convert base case to store dp
+        dp[0] = cost[0]
+        
+        dp[1] = cost[1]
+        
+        # step 3: convert to for loop
+        for i in range(2, n):
+            dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
 
-        # step 3: store the value in dp array
-        dp[n] = min(self.solve(cost, n-1,dp), self.solve(cost,n-2,dp)) + cost[n]
-        return dp[n]
+        return min(dp[n-1], dp[n-2])
 
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         n = len(cost)
-        dp = [-1] * n
-        ans = min(self.solve(cost, n-1,dp), self.solve(cost, n-2,dp))
-        return ans
+
+        return self.solve(cost,n)
