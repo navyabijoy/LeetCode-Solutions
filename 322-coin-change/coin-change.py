@@ -1,26 +1,18 @@
 class Solution:
-    def solve(self,coins, amount,dp):
-       
-        if amount ==  0:
-            return 0
-        if amount < 0:
-            return float('inf')
-        if dp[amount] != -1:
-            return dp[amount]
+    def solve(self,coins, amt):
+        dp = [float('inf')] * (amt+1)
 
-        mini = float('inf')
-        for coin in coins:
-            total = self.solve(coins, amount-coin,dp)
-            if total != float('inf'):
-                mini = min(mini, 1+total)
-        dp[amount] = mini
-        return mini
-    
+        dp[0] = 0
 
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        dp = [-1] * (amount+1)
-        ans = self.solve(coins, amount, dp)
+        for i in range(1, amt+1):
+            for coin in coins:
+                if i - coin >= 0:
+                    dp[i] = min(dp[i], 1 + dp[i-coin])
         
-        if ans == float('inf'):
-            return -1
+        
+        return dp[amt] if dp[amt] != float('inf') else -1
+ 
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        ans = self.solve(coins,amount)
+
         return ans
