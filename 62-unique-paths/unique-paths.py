@@ -1,17 +1,23 @@
 class Solution:
-    def helper(self,i,j):
-        dp =[[0] * j for _ in range(i)]
+    def solve(self,m,n,dp):
+        if m == 0 and n == 0:
+            return 1
 
-        for a in range(i):
-            for b in range(j):
-                if a == 0 and b == 0:
-                    dp[a][b] = 1
-                else:
-                    up =  dp[a-1][b]
-                    left = dp[a][b-1]
-                    dp[a][b] = up + left
+        if m < 0 or n < 0:
+            return 0
 
-        return dp[i-1][j-1]
+        if dp[m][n] != -1:
+            return dp[m][n]
+        
+        direction = [[-1,0],[0,-1]] # the path can only be top, left
+        path = 0
+        for r,c in direction:
+            path += self.solve(m+r,n+c,dp)
+        dp[m][n] = path
+        return dp[m][n] 
+
     def uniquePaths(self, m: int, n: int) -> int:
-        return self.helper(m,n)
+        dp = [[-1 for _ in range(n)] for _ in range(m)]
+        ans = self.solve(m-1,n-1,dp)
+        return ans
         
