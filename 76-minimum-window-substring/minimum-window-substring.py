@@ -1,21 +1,32 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if len(s) < len(t):
-            return ""
+        if len(s) < len(t) or s == "" or t == "":
+            return "" 
 
-        min_len = float('inf')
-        min_char = ""
-        t_count = Counter(t)
-        window_count = Counter()
+        t_map = Counter(t)
+        window_count = {ch:0 for ch in t_map} 
+        required = len(t_map)
+        formed = 0
+
         left = 0
-        for right in range(len(s)):
-            window_count[s[right]] += 1
-            while all(window_count[char] >= t_count[char] for char in t_count):
-                if min_len > right-left+1:
-                    min_len = right - left + 1
-                    min_char = s[left:right+1]
-                window_count[s[left]] -= 1
-                left += 1
-            right += 1
-        return min_char
+        min_len = float('inf')
+        res = ""
+        
+        for right,ch in enumerate(s):
+            if ch in window_count:
+                window_count[ch] += 1
+                if window_count[ch] == t_map[ch]:
+                    formed += 1
             
+            while formed == required:
+                if right - left + 1 < min_len:
+                    min_len = right - left + 1
+                    res = s[left:right + 1]
+                
+                left_ch = s[left]
+                if left_ch in window_count:
+                    window_count[left_ch] -= 1
+                    if window_count[left_ch] < t_map[left_ch]:
+                        formed -= 1
+                left += 1
+        return res
