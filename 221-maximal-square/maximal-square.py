@@ -1,25 +1,24 @@
 class Solution:
-    def helper(self,mat,r,c,maxi,dp):
+    def helper(self,mat,r,c,maxi):
         rows = len(mat)
         cols = len(mat[0])
+        dp = [[0] * cols for _ in range(rows)]
 
-        # base case, if r and c exceed rows and cols value
-        if r >= rows or c >= cols:
-            return 0
+        for i in range(rows):
+            for j in range(cols):
+                right = dp[i-1][j]
+                diag = dp[i-1][j-1]
+                down = dp[i][j-1]
 
-        if dp[r][c] != -1: # step 3: check if its occupied
-            return dp[r][c]
-        
-        right = self.helper(mat,r,c+1,maxi,dp)
-        diag = self.helper(mat,r+1,c+1,maxi,dp)
-        down = self.helper(mat,r+1,c,maxi,dp)
-
-        if mat[r][c] == '1':
-            dp[r][c] = 1 + min(right,diag,down) # step 2: store the values
-            maxi[0] = max(maxi[0],dp[r][c]) # update the max value
-        else:
-            dp[r][c] = 0
-        return dp[r][c] 
+                if mat[i][j] == '1':
+                    if i == 0 and j == 0:
+                        dp[i][j] = 1
+                    else:
+                        dp[i][j] = 1 + min(right,diag,down) # step 2: store the values
+                else:
+                    dp[i][j] = 0
+                maxi[0] = max(maxi[0], dp[i][j])
+        return dp[0][0] 
 
     def maximalSquare(self, matrix) -> int:
         if not matrix or not matrix[0]:
@@ -28,7 +27,7 @@ class Solution:
         rows = len(matrix)
         cols = len(matrix[0])
 
-        dp = [[-1] * cols for _ in range(rows)] # step 1:created a 2D DP array
+         # step 1:created a 2D DP array
         maxi = [0] 
-        self.helper(matrix, 0, 0, maxi,dp)
+        self.helper(matrix, 0, 0, maxi)
         return maxi[0] ** 2 
