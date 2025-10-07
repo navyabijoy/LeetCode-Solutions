@@ -1,20 +1,21 @@
 class Solution:
-    def solve(self,vertex,i,j,dp):
-        if i+1 == j:
-            return 0
-        if dp[i][j] != -1:
-            return dp[i][j]
+    def solve(self,vertex):
+        n = len(vertex)
+        dp = [[0 for _ in range(n)] for _ in range(n)]
 
-        ans = float('inf')
-        for k in range(i+1,j):
-            ans = min(ans, (vertex[i]*vertex[k]*vertex[j]) + self.solve(vertex,i,k,dp) + self.solve(vertex,k,j,dp))
-        
-        dp[i][j] = ans
-        return dp[i][j]
+        for i in range(n-1, -1, -1):
+            for j in range(i+2, n):
+
+                ans = float('inf')
+                for k in range(i+1,j):
+                    ans = min(ans, (vertex[i]*vertex[k]*vertex[j]) + dp[i][k] + dp[k][j])
+                
+                dp[i][j] = ans
+        return dp[0][n-1]
 
 
     def minScoreTriangulation(self, values: List[int]) -> int:
-        n = len(values)
-        dp = [[-1 for _ in range(n)] for _ in range(n)]
-        ans = self.solve(values, 0, n-1,dp)
+        
+        
+        ans = self.solve(values)
         return ans
