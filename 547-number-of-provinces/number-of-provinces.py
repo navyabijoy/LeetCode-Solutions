@@ -1,26 +1,25 @@
 class Solution:
+    def dfs(self,i,adj,vis):
+        vis[i] = 1
+        for nei in adj[i]:
+            if vis[nei] == 0:
+                self.dfs(nei,adj,vis)
+
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        v = len(isConnected)
-        adjLs = [[] for _ in range(v)]  # Create an adjacency list with empty lists        v = len(isConnected)
-        # create an adjacency list
-        for i in range(v):
-            for j in range(v):
-                if isConnected[i][j] == 1 and i != j:
-                    adjLs[i].append(j)
-                    adjLs[j].append(i)
+        m = len(isConnected)
+        n = len(isConnected[0])
+        adj = defaultdict(list)
+        for r in range(m):
+            for c in range(n):
+                if isConnected[r][c] == 1 and r != c:
+                    adj[r].append(c)
+                    adj[c].append(r)
         
-        #create a dfs/bfs function
-        def dfs(node, adjLs, visited):
-            visited[node] = True
-            for neighbor in adjLs[node]:
-                if not visited[neighbor]:
-                    dfs(neighbor, adjLs, visited)
-
-        visited = [False] * v
+        vis = [0] * m
         count = 0
-        for i in range(v):
-            if visited[i] is False:
+        for i in range(len(vis)):
+            if vis[i] == 0:
                 count += 1
-                dfs(i, adjLs, visited)
-
+                self.dfs(i, adj, vis)
         return count
+            
