@@ -40,7 +40,6 @@ class Solution:
                 if not vis[i][j] and mat[i][j] == "O":
                     mat[i][j] = "X"
         
-        return mat
             
         
         
