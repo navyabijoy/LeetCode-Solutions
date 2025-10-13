@@ -1,18 +1,23 @@
 class Solution:
-    def solve(self,coins, amt):
-        dp = [float('inf')] * (amt+1)
+    def solve(self,coins,idx,amt,dp):
+        if amt == 0:
+            return 0
 
-        dp[0] = 0
+        if amt < 0 or idx == len(coins):
+            return float('inf') 
+        
+        if dp[idx][amt] != -1:
+            return dp[idx][amt]
 
-        for i in range(1, amt+1):
-            for coin in coins:
-                if i - coin >= 0:
-                    dp[i] = min(dp[i], 1 + dp[i-coin])
-        
-        
-        return dp[amt] if dp[amt] != float('inf') else -1
- 
+        take = 1 + self.solve(coins, idx, amt - coins[idx],dp)
+        not_take = self.solve(coins,idx+1,amt,dp)
+
+        dp[idx][amt] = min(take, not_take)
+        return min(take, not_take)
+
     def coinChange(self, coins: List[int], amount: int) -> int:
-        ans = self.solve(coins,amount)
-
-        return ans
+        n = len(coins)
+        dp = [[-1] * (amount + 1) for _ in range(n)]
+        ans = self.solve(coins,0,amount,dp)
+        return ans if ans != float('inf') else -1
+    
