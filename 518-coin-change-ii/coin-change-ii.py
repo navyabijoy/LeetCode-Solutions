@@ -1,23 +1,22 @@
 class Solution:
-    def solve(self, amt, coins, idx,dp):
-        if amt == 0: # success case
-            # “How many ways can I make amount 0?” → exactly 1 way, which is by choosing no more coins
-            return 1
+    def solve(self, coins, idx, amt):
+        dp = [[0] * (amt + 1) for _ in range(len(coins)+1)]
 
-        if idx == len(coins): 
-            # ive run out of coins, how many ways can i change the amount? 0
-            return 0
-        
-        if (amt,idx) in dp:
-            return dp[(amt,idx)]
+        for i in range(len(coins)+1):
+            dp[i][0] = 1
 
-        incl = self.solve(amt - coins[idx], coins, idx,dp) if amt - coins[idx] >= 0 else 0
-        excl = self.solve(amt, coins, idx + 1,dp)
+        for i in range(len(coins)-1,-1,-1):
+            for j in range(1,amt+1):                    
+                incl = 0
+                if j - coins[i] >= 0:
+                    incl = dp[i][j - coins[i]]
+                excl = dp[i+1][j] 
 
-        dp[(amt,idx)] = incl + excl
-        return dp[(amt,idx)]
+                dp[i][j] = incl + excl
+
+        return dp[0][amt]
 
     def change(self, amount: int, coins: List[int]) -> int:
-        dp = {}
-        ans = self.solve(amount, coins, 0,dp)
+        
+        ans = self.solve(coins,0,amount)
         return ans 
