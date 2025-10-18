@@ -34,7 +34,6 @@ class Solution:
         return dp[0][0]
 
     def solveSO(self,text1,text2):
-        curr = [0] * (len(text2)+1)
         next = [0] * (len(text2)+1)
         for i in range(len(text1)-1,-1,-1):
             curr = [0] * (len(text2)+1)
