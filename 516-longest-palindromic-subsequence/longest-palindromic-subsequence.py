@@ -1,25 +1,25 @@
 class Solution:
-    def solve(self, text1, text2, i, j, dp):
-        if i < 0 or j < 0:
-            return 0
+    def solve(self, text1, text2):
+        n = len(text1)
+        dp = [[0] * (n+1) for _ in range(n+1)]
 
-        if dp[i][j] != -1:
-            return dp[i][j]
-            
-        ans = 0
-        if text1[i] == text2[j]:
-            ans = 1 + self.solve(text1, text2, i - 1, j - 1, dp)
-        else:
-            ans = max(
-                self.solve(text1, text2, i - 1, j, dp),
-                self.solve(text1, text2, i, j - 1, dp),
-            )
+        
+        for i in range(len(text1)):
+            for j in range(len(text2)):
+                ans = 0
+                if text1[i] == text2[j]:
+                    ans = 1 + dp[i - 1][j - 1]
+                else:
+                    ans = max(
+                        dp[i - 1][j],
+                        dp[i][j - 1],
+                    )
 
-        dp[i][j] = ans
-        return dp[i][j]
+                dp[i][j] = ans
+
+        return dp[n - 1][n - 1]
 
     def longestPalindromeSubseq(self, s: str) -> int:
         revs = s[::-1]
-        n = len(s)
-        dp = [[-1] * n for _ in range(n)]
-        return self.solve(s, revs, n - 1, n - 1, dp)
+
+        return self.solve(s, revs)
