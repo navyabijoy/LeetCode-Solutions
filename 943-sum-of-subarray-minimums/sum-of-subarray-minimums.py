@@ -1,34 +1,40 @@
 class Solution:
-    def findNse(self, nums):
+    def NSE(self, arr):
+        n = len(arr)
         stack = []
-        nse = [len(nums)] * len(nums)  
-        for i in range(len(nums)-1, -1, -1):
-            while stack and nums[stack[-1]] >= nums[i]:
-                stack.pop()
-            if stack:
-                nse[i] = stack[-1]
-            stack.append(i)
-        return nse
-
-    def findPse(self, arr):
-        stack = []
-        pse = [-1] * len(arr)   # default: no PSE → boundary
-        for i in range(len(arr)):
+        ans = [0] * n
+        for i in range(n-1,-1,-1):
             while stack and arr[stack[-1]] > arr[i]:
                 stack.pop()
-            if stack:
-                pse[i] = stack[-1]
+            ans[i] = stack[-1] if stack else n
             stack.append(i)
-        return pse
+        return ans
+    
+    def PSE(self, arr):
+        n = len(arr)
+        stack = []
+        ans = [0] * n
+        for i in range(n):
+            while stack and arr[stack[-1]] >= arr[i]:
+                stack.pop()
+            ans[i] = stack[-1] if stack else -1
+            stack.append(i) # add index as we need the range in index
+        return ans
+
 
     def sumSubarrayMins(self, arr: List[int]) -> int:
-        mod = 10**9 + 7
-        nse = self.findNse(arr)
-        pse = self.findPse(arr)
+        nse = self.NSE(arr)
+        pse = self.PSE(arr)
+
+        n = len(arr)
         total = 0
-        for i in range(len(arr)):
-            left = i - pse[i]       # distance to prev smaller
-            right = nse[i] - i      # distance to next smaller
+        MOD = 10**9 + 7
+        for i in range(n):
+            left = i - pse[i]
+            right = nse[i] - i
             freq = left * right
-            total = (total + arr[i] * freq) % mod
+            total = (total + freq * arr[i]) % MOD
         return total
+        
+        
+        
