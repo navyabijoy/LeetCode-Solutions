@@ -1,1 +1,1 @@
-<h2>min-stack Notes</h2><hr>[ Time taken: 14 m 33 s ]
+<h2>min-stack Notes</h2><hr>[ Time taken: 8 m 27 s ]
