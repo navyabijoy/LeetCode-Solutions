@@ -1,31 +1,13 @@
 class Solution:
-    def NextSmaller(self,arr):
-        stack = []
-        n = len(arr)
-        nse = [n] * n
-        for i in range(n-1,-1,-1):
-            while stack and arr[stack[-1]] >= arr[i]:
-                stack.pop()
-            nse[i] = stack[-1] if stack else n
-            stack.append(i)
-        return nse
-    
-    def PrevSmaller(self,arr):
-        stack = []
-        n = len(arr)
-        pse = [-1] * n
-        for i in range(n):
-            while stack and arr[stack[-1]] >= arr[i]:
-                stack.pop()
-            pse[i] = stack[-1] if stack else -1
-            stack.append(i)
-        return pse
-
     def largestRectangleArea(self, heights: List[int]) -> int:
-        nse = self.NextSmaller(heights)
-        pse = self.PrevSmaller(heights)
-        maxArea = float('-inf')
-        for i in range(len(heights)):
-            area = heights[i] * (nse[i] - pse[i] - 1)
-            maxArea = max(maxArea, area)
+        stack = []
+        maxArea = 0
+        heights.append(0)
+        for i, h in enumerate(heights):
+            while stack and heights[stack[-1]] > h:
+                height = heights[stack.pop()]
+                width = i if not stack else i - stack[-1] - 1
+                maxArea = max(maxArea, height * width)
+            stack.append(i)
+        heights.pop()
         return maxArea
