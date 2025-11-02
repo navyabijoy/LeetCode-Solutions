@@ -8,31 +8,27 @@ class Solution:
         if head is None:
             return None
 
-        temp = head
         total = 0
-        while temp:
-            temp = temp.next
+        curr = head
+        while curr:
             total += 1
-            
-            
-
+            curr = curr.next
+        
         if total < k:
             return head
-
+        prev = None
         curr = head
-        after = None
-        before = None
-
         count = 0
-
-        while curr is not None and count < k:
-            after = curr.next 
-            curr.next = before
-            before = curr
-            curr = after 
+        while curr and count != k:
+            after = curr.next
+            curr.next = prev
+            prev = curr
+            curr = after
             count += 1
+        
         
         if after is not None:
             head.next = self.reverseKGroup(after, k)
         
-        return before
+        return prev # its now the head
+        
