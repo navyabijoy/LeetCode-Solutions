@@ -1,26 +1,28 @@
 class Solution:
-    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+    def floodFill(
+        self, image: List[List[int]], sr: int, sc: int, color: int
+    ) -> List[List[int]]:
         m = len(image)
         n = len(image[0])
-        temp = image[sr][sc]
-        if temp == color:
-            return image
-
-        def backtrack(r,c):
-            if r >= m or c >= n or r < 0 or c < 0:
-                return
-
-            if image[r][c] != temp:
-                return
-            
-            image[r][c] = color
-
-            direction = [[0,1],[0,-1],[1,0],[-1,0]]
-            for track in direction:
-                newRow = r + track[0]
-                newCol = c + track[1]
-                 # the cell should be the same as the org color
-                backtrack(newRow,newCol)
-
-        backtrack(sr,sc)
+        q = deque()
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        original = image[sr][sc]
+        # vis = [[False] * n for _ in range(m)]
+        q.append([sr, sc])
+        while q:
+            r, c = q.popleft()
+            if image[r][c] == original:
+                image[r][c] = color
+            # vis[r][c] = True
+            for dr, dc in directions:
+                nrow = r + dr
+                ncol = c + dc
+                if (
+                    0 <= nrow < m
+                    and 0 <= ncol < n
+                    and image[nrow][ncol] != color
+                    and image[nrow][ncol] == original
+                ):
+                    image[nrow][ncol] = color
+                    q.append([nrow, ncol])
         return image
