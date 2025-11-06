@@ -11,7 +11,6 @@ class Solution:
                 if grid[i][j] == 2:
                     q.append([i,j]) # pushed all the rotten oranges
         time = 0
-        vis = [[False] * n for _ in range(m)]
         directions = [(0,1),(0,-1),(-1,0),(1,0)]
         while q and fresh != 0:
             for _ in range(len(q)):
@@ -19,8 +18,8 @@ class Solution:
                 for dr, dc in directions:
                     nrow = r + dr
                     ncol = c + dc
-                    if 0 <= nrow < m and 0 <= ncol < n and not vis[nrow][ncol] and grid[nrow][ncol] == 1:
-                        vis[nrow][ncol] = True
+                    if 0 <= nrow < m and 0 <= ncol < n and grid[nrow][ncol] == 1:
+                        grid[nrow][ncol] = 2
                         fresh -= 1
                         
                         q.append([nrow,ncol])
