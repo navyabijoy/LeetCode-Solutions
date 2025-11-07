@@ -6,16 +6,12 @@ class Solution:
         for i in range(m):
             heapq.heappush(minheap, (matrix[i][0], i, 0))  # val, row, col
 
-        maxheap = []
-        while minheap:
+        
+        for _ in range(k-1):
             val, row, col = heapq.heappop(minheap)
 
-            heapq.heappush(maxheap, -val)
-
-            while len(maxheap) > k:
-                heapq.heappop(maxheap)
-
+            
             if col + 1 < len(matrix[row]):
                 heapq.heappush(minheap, (matrix[row][col + 1], row, col + 1))
 
-        return -maxheap[0]
+        return minheap[0][0]
