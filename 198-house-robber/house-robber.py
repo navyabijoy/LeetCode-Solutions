@@ -1,22 +1,19 @@
 class Solution:
-    def solve(self,nums,n,dp):
-        if n == 0:
+    def helper(self, idx, nums, dp):
+        if idx < 0:
+            return 0
+        if idx == 0:
             return nums[0]
-
-        if n < 0:
-            return  0
-
-        if dp[n] != -1:
-            return dp[n]
-
-        incl = self.solve(nums, n-2,dp) + nums[n]
-        excl = self.solve(nums,n-1,dp) + 0
-
-        dp[n] = max(incl,excl)
-        return dp[n]
-
+        if dp[idx] != -1:
+            return dp[idx]
+        pick = nums[idx] + self.helper(idx - 2, nums, dp)
+        not_pick = self.helper(idx - 1, nums, dp)
+        
+        dp[idx] = max(pick, not_pick)
+        return dp[idx]
+        
     def rob(self, nums: List[int]) -> int:
-        n = len(nums)
+        n = len(nums) - 1
         dp = [-1] * (n+1)
-        ans = self.solve(nums,n-1,dp)
+        ans = self.helper(n, nums, dp)
         return ans
