@@ -11,9 +11,9 @@ class Solution:
         
         dp[idx] = max(pick, not_pick)
         return dp[idx]
-        
+
     def rob(self, nums: List[int]) -> int:
-        n = len(nums) - 1
+        n = len(nums)
         dp = [-1] * (n+1)
-        ans = self.helper(n, nums, dp)
+        ans = self.helper(n-1, nums, dp)
         return ans
