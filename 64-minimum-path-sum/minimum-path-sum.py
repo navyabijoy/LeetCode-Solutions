@@ -1,19 +1,20 @@
 class Solution:
-    def helper(self,mat,i,j):
-        prev = [0] * j
-        for r in range(i):
-            curr = [0] * j
-            for c in range(j):
-                if r == 0 and c == 0:
-                    curr[c] = mat[0][0]
-                else:
-                    up = mat[r][c] + prev[c] if r > 0 else float('inf')
-                    left = mat[r][c] + curr[c-1] if c > 0 else float('inf')
-                    curr[c] = min(up,left)
-            prev=  curr
-        return prev[-1]
+    def solve(self, r, c, grid, dp):
+        if r == 0 and c == 0:
+            return grid[0][0]
+        if r < 0 or c < 0:
+            return float('inf')
+        if dp[r][c] != -1:
+            return dp[r][c]
+        up = grid[r][c] + self.solve(r - 1, c, grid, dp)
+        left = grid[r][c] + self.solve(r, c - 1, grid, dp)
+        
+        dp[r][c] = min(up,left)
+        return dp[r][c]
 
     def minPathSum(self, grid: List[List[int]]) -> int:
         m = len(grid)
         n = len(grid[0])
-        return self.helper(grid,m,n)
+        dp = [[-1] * n for _ in range(m)]
+        ans = self.solve(m - 1, n - 1, grid, dp)
+        return ans
