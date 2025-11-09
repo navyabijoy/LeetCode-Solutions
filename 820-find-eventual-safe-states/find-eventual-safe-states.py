@@ -1,25 +1,23 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
-        n = len(graph)
         adj = defaultdict(list)
-        outdegree = [0] * n
+        indegree = [0] * (len(graph))
         for i in range(len(graph)):
-            for nei in graph[i]:
-                adj[nei].append(i)   # reverse the edge
-            outdegree[i] = len(graph[i])
-                
-        topo = []
+            for g in graph[i]:
+                adj[g].append(i)
+                indegree[i] += 1
         q = deque()
-
-        for i in range(n):
-            if outdegree[i] == 0:
-                q.append(i) # we have terminal nodes now
+        for i in range(len(graph)):
+            if indegree[i] == 0:
+                q.append(i) # indegree 0, terminal nodes
         
+        topo =[]
         while q:
             node = q.popleft()
             topo.append(node)
             for nei in adj[node]:
-                outdegree[nei] -= 1
-                if outdegree[nei] == 0:
+                indegree[nei] -= 1
+                if indegree[nei] == 0:
                     q.append(nei)
         return sorted(topo)
+        
