@@ -1,32 +1,24 @@
 class Solution:
     def reorganizeString(self, s: str) -> str:
-        hashmap = Counter(s)
+        track = Counter(s)
         maxHeap = []
-        for c,n  in hashmap.items():
-            heappush(maxHeap, (-n,c))
+        res = []
 
-        res = ""
+        for ch, num in track.items():
+            heapq.heappush(maxHeap, (-num,ch))
+
+        prev = None
+
         while maxHeap:
-            currChar = maxHeap[0][1]
-            currCount = -maxHeap[0][0]
-            heappop(maxHeap)
-            if len(res) >= 1 and res[-1]==currChar:
-                if not maxHeap:
-                    return ""
-                nextChar = maxHeap[0][1]
-                nextCount = -maxHeap[0][0]
-                heappop(maxHeap)
-
-                res += nextChar
-                nextCount -= 1
-                if nextCount > 0:
-                    heappush(maxHeap, (-nextCount, nextChar))
-            else:
-                res += currChar
-                currCount -= 1
+            freq, ch = heapq.heappop(maxHeap)
+            res.append(ch)
+            freq += 1 # increase as the freq is negative
+            if prev:
+                heapq.heappush(maxHeap,prev)
+                prev = None
+            if freq < 0:
+                prev = (freq, ch)
             
-            if currCount > 0:
-                heappush(maxHeap, (-currCount, currChar))
-        return res
-
-
+        res = "".join(res)
+        return res if len(res) == len(s) else ""
+            
