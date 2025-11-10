@@ -1,22 +1,23 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        ans = []
         candidates.sort()
-        res = []
-
-        def backtrack(cur,pos,target):
-            if target == 0:
-                res.append(cur.copy())
-            if target < 0:
+        def backtrack(index, res, total):
+            if total == target:
+                ans.append(res[:])
                 return
-            prev = -1
 
-            for i in range(pos,len(candidates)):
-                if candidates[i] == prev:
-                    continue
-                cur.append(candidates[i])
-                backtrack(cur, i+1,target - candidates[i])
-                cur.pop()
-                prev = candidates[i]
-        backtrack([],0,target)
-        return res
+            if index == len(candidates) or total > target:
+                return
 
+            res.append(candidates[index])
+            backtrack(index + 1, res, total + candidates[index])
+            res.pop()
+            while (
+                index + 1 < len(candidates) and candidates[index] == candidates[index + 1]
+            ):
+                index += 1
+            backtrack(index + 1, res, total)
+
+        backtrack(0, [], 0)
+        return sorted(ans)
