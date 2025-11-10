@@ -5,24 +5,12 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def isValid(self, node, left, right):
+        if node is None:
+            return True
+        if not (node.val > left and node.val < right):
+            return False
+        
+        return (self.isValid(node.left, left, node.val) and self.isValid(node.right, node.val, right))
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        res = []
-
-        def inorder(node):
-            if node is None:
-                return None
-                
-            if node.left is not None:
-                inorder(node.left)
-            res.append(node.val)
-            if node.right is not None:
-                inorder(node.right)
-
-        inorder(root)
-        for i in range(1,len(res)):
-            if res[i] <= res[i-1]:
-                 # inorder is supposed to write the array in ascending order for BST
-                 # now if the number before the current number is greater than the current number
-                 # then the tree is NOT bst
-                return False
-        return True
+        return self.isValid(root, float('-inf'), float('inf'))
