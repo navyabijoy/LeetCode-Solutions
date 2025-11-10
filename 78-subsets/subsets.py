@@ -1,19 +1,19 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        n = len(nums)
-        res, sol = [], []
+        answer = []
 
-        def backtrack(i):
-            if i == n:
-                res.append(sol[:]) # add a copy of sol to res
+        def backtrack(index, temp):
+            if index == len(nums):
+                answer.append(temp[:])
                 return
             
-            # dont pick
-            backtrack(i+1)
-            # pick
-            sol.append(nums[i]) # add
-            backtrack(i+1) # move to the next number
-            sol.pop() # backtrack by pop
+            # we include the number
+            temp.append(nums[index])
+            backtrack(index + 1, temp)
+            temp.pop()
+            
+            # we skip the number
+            backtrack(index+1, temp)
         
-        backtrack(0)
-        return res
+        backtrack(0,[])
+        return answer
