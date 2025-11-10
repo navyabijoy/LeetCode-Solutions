@@ -1,29 +1,24 @@
 class Solution:
-    def solve(self,index, nums, target):
-        curr = [False] * (target+1)
-        next = [False] * (target+1)
-
-        curr[0] = True
-        next[0] = True
-        
-        for index in range(len(nums)-1,-1,-1):
-            for t in range(1, target+1):
-                incl = False
-                if(t - nums[index] >= 0):
-                    incl = next[t - nums[index]]
-                excl = next[t]
-                curr[t] = incl or excl
-            next = curr[:]
-
-        return next[target]
-        
-    def canPartition(self, nums: List[int]) -> bool:
-        total = sum(nums)
-        N = len(nums)
-        
-        if total % 2 != 0:
+    def solve(self, idx, nums, target, dp):
+        if idx < 0:
             return False
-        
-        target = total // 2
+        if idx == 0:
+            return nums[idx] == target
+        if target < 0:
+            return False
+        if target == 0:
+            return True
+        if dp[idx][target] != -1:
+            return dp[idx][target]
+        incl = self.solve(idx - 1, nums, target - nums[idx], dp)
+        excl = self.solve(idx - 1, nums, target - 0, dp)
+        dp[idx][target] = incl or excl
+        return dp[idx][target]
 
-        return self.solve(0,nums,target)
+    def canPartition(self, nums: List[int]) -> bool:
+        if (sum(nums) % 2 != 0):
+            return False
+        n = len(nums)
+        target = sum(nums) // 2
+        dp = [ [-1] * (target + 1) for _ in range(n) ]
+        return self.solve(n-1, nums, target,dp)
