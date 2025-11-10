@@ -1,22 +1,20 @@
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        ans = []
         res = []
-        sol = []
-
-        def backtrack(start,current_sum):
-            if len(sol[:]) == k:
-                if current_sum == n:
-                    res.append(sol[:])
+        def backtrack(start, total ):
+            if len(res[:]) == k:
+                if total == n:
+                    ans.append(res[:])
                 return
-
-            for num in range(start, 10):
-                if current_sum + num > n:
-                    break  # No point in continuing if the sum exceeds n
-
-                sol.append(num)
-                backtrack(num + 1, current_sum + num)
-                sol.pop()
             
+            for num in range(start, 10):
+                if total + num > n:
+                    break
+                res.append(num)
+                backtrack(num+1, total + num)
+                res.pop()
 
-        backtrack(1, 0)
-        return res
+        
+        backtrack(1,0)
+        return ans
