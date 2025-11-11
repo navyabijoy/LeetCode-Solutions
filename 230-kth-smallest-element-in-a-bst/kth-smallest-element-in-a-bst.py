@@ -6,20 +6,17 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        def inorder(node, counter, k , k_smallest):
-            if not node or counter[0] >= k:
-                return
-            inorder(node.left, counter,k,k_smallest )
+        stack = []
+        curr = root
+
+        while True:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
             
-            counter[0] += 1 # after every traversal increase the value of counter
+            curr = stack.pop()
+            k -= 1
+            if k == 0:
+                return curr.val
+            curr = curr.right
 
-            if counter[0] == k: # if counter is k
-                k_smallest[0] = node.val
-                return
-
-            inorder(node.right, counter, k,k_smallest)
-        
-        k_smallest = [float('inf')]
-        counter = [0]
-        inorder(root, counter, k,k_smallest)
-        return k_smallest[0]
