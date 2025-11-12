@@ -8,23 +8,16 @@ class Node:
 
 from typing import Optional
 class Solution:
-    def helper(self,root, nodes_completed):
-        if not root:
-            return None
-        
-        copy = Node(root.val) 
-        nodes_completed[root] = copy
-
-        for p in root.neighbors:
-            # if p is already cloned, get extract that 
-            x = nodes_completed.get(p)
-            # if p is not cloned, we recursively clone it
-            if not x:
-                copy.neighbors += [self.helper(p, nodes_completed)]
-            else:
-                copy.neighbors += [x]
-        return copy
-
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        nodes_completed = {}
-        return self.helper(node, nodes_completed)
+        oldToNew = {}
+
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy = Node(node.val)
+            oldToNew[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        
+        return dfs(node) if node else None
