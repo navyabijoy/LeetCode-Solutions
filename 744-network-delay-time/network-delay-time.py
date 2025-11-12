@@ -6,19 +6,15 @@ class Solution:
         
         dist = [float('inf')] * (n+1)
         dist[k] = 0
-        
-        heap = [(0,k)]
+        heap = [(0,k)] # it shoes the 
 
         while heap:
-
-            time,node = heapq.heappop(heap)
-            
-            for nei, wt in adj[node]:
-                new_time = time + wt
-
-                if new_time < dist[nei]:
-                    dist[nei] = new_time
-                    heapq.heappush(heap,(new_time, nei))
+            time, node = heapq.heappop(heap)
+            for nei, t in adj[node]:
+                if time + t >= dist[nei]:
+                    continue
+                dist[nei] = time+t
+                heapq.heappush(heap, (time+t, nei))
         
         max_time = max(dist[1:])
         return max_time if max_time != float('inf') else -1
