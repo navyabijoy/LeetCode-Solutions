@@ -1,34 +1,32 @@
-'''
-Create TWO stacks, s1 and s2. Let x be the input value:
-- Push - 
-S1 -> S2
-X -> S1
-S2 -> S1
-'''
 class MyQueue:
 
     def __init__(self):
-        self.s1 = []
-        self.s2 = []
+        self.stack1 = []
+        self.stack2 = []
 
     def push(self, x: int) -> None:
-        while len(self.s1) != 0:
-            self.s2.append(self.s1.pop())
-        self.s1.append(x)
-        while len(self.s2) != 0:
-            self.s1.append(self.s2.pop())
-
+        self.stack1.append(x)
 
     def pop(self) -> int:
-        val = self.s1.pop()
+        while self.stack1:
+            self.stack2.append(self.stack1.pop())
+        val = self.stack2.pop()
+        while self.stack2:
+            self.stack1.append(self.stack2.pop())
+        return val
+
+
+    def peek(self) -> int:
+        while self.stack1:
+            self.stack2.append(self.stack1.pop())
+        val = self.stack2[-1]
+        while self.stack2:
+            self.stack1.append(self.stack2.pop())
         return val
         
-    def peek(self) -> int:
-        return self.s1[-1]
-        
+
     def empty(self) -> bool:
-        return len(self.s1)==0
-        
+        return len(self.stack1) == 0
 
 
 # Your MyQueue object will be instantiated and called as such:
