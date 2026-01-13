@@ -12,9 +12,9 @@ class Solution:
         if root is None:
             return 0
         
-        leftHeight = self.traverse(root.left) + 1
-        rightHeight =  self.traverse(root.right) + 1
-        self.height = max(leftHeight, rightHeight)
+        leftHeight = self.traverse(root.left)
+        rightHeight =  self.traverse(root.right)
+        self.height = max(leftHeight, rightHeight) + 1
         return self.height
 
     def maxDepth(self, root: Optional[TreeNode]) -> int:
