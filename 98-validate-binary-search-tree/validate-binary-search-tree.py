@@ -5,16 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def validate(self, node, minimum,maximum):
-        if node is None:
+    def validate(self, root, minimum, maximum):
+        if root is None:
             return True
         
-        if node.val > minimum and node.val < maximum:
-            left = self.validate(node.left,minimum,node.val)
-            right = self.validate(node.right, node.val, maximum)
+        if root.val > minimum and root.val < maximum:
+            left = self.validate(root.left, minimum, root.val)
+            right = self.validate(root.right, root.val, maximum)
             return left and right
         
         return False
-        
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         return self.validate(root, float('-inf'), float('inf'))
