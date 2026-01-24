@@ -1,7 +1,7 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        count = Counter(nums)
-        for val, freq in count.items():
-            if freq > 1:
+        track = Counter(nums)
+        for num, cnt in track.items():
+            if cnt >= 2:
                 return True
         return False
