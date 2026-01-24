@@ -1,13 +1,13 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         track = Counter(nums)
-        minHeap = []
+        maxHeap = []
+        for num, count in track.items():
+            heapq.heappush(maxHeap, (-count, num))
 
-        for num, freq in track.items():
-            heapq.heappush(minHeap, (freq, num))
-            if len(minHeap) > k:
-                heapq.heappop(minHeap)
         res = []
-        for freq, num in minHeap:
-            res.append(num)
+        while k:
+            cnt, n = heapq.heappop(maxHeap)
+            res.append(n)
+            k -= 1
         return res
