@@ -1,20 +1,20 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        tree = defaultdict()
+        seen = {}
         left = 0
         maxLen = 0
         for right in range(len(fruits)):
-            if fruits[right] in tree:
-                tree[fruits[right]] += 1
+            if fruits[right] in seen:
+                seen[fruits[right]] += 1
             else:
-                tree[fruits[right]] = 1
+                seen[fruits[right]] = 1
 
-            while len(tree) > 2:
-                tree[fruits[left]] -= 1
-                if tree[fruits[left]] == 0:
-                    del tree[fruits[left]]
+            while len(seen) > 2:
+                seen[fruits[left]] -= 1
+                if seen[fruits[left]] == 0:
+                    del seen[fruits[left]]
                 left += 1
 
             maxLen = max(maxLen, right - left + 1)
-        return maxLen
             
+        return maxLen
