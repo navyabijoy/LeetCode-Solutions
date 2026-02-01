@@ -11,6 +11,7 @@ class Solution:
         for i in range(numCourses):
             if indegree[i] == 0:
                 q.append(i)
+        
         topo = []
         while q:
             node = q.popleft()
@@ -19,4 +20,5 @@ class Solution:
                 indegree[nei] -= 1
                 if indegree[nei] == 0:
                     q.append(nei)
+                    
         return len(topo) == numCourses
