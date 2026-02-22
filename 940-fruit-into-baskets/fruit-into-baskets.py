@@ -1,20 +1,22 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        seen = {}
-        left = 0
+        types = defaultdict(list)
         maxLen = 0
+        left = 0
         for right in range(len(fruits)):
-            if fruits[right] in seen:
-                seen[fruits[right]] += 1
+            if fruits[right] in types:
+                types[fruits[right]] += 1
             else:
-                seen[fruits[right]] = 1
+                types[fruits[right]] = 1
 
-            while len(seen) > 2:
-                seen[fruits[left]] -= 1
-                if seen[fruits[left]] == 0:
-                    del seen[fruits[left]]
+            while len(types) > 2:
+                types[fruits[left]] -= 1
+                if types[fruits[left]] == 0:
+                    del types[fruits[left]] 
                 left += 1
-
+            
             maxLen = max(maxLen, right - left + 1)
             
         return maxLen
+
+            
