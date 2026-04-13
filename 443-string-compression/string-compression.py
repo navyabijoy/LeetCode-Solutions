@@ -1,18 +1,25 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        write_index =0
-        read_index=0
-        while read_index < len(chars):
-            curr_char = chars[read_index]
-            count = 0
-            while read_index < len(chars) and chars[read_index] == curr_char:
-                read_index += 1
-                count += 1
-            chars[write_index] = curr_char
-            write_index += 1
+        n = len(chars)
+        i = 0
+        index = 0
 
-            if count >1:
-                for digit in str(count):
-                    chars[write_index] = digit
-                    write_index += 1
-        return write_index
+        while i < n:
+            curr_char = chars[i]
+            count = 0
+
+            # count the curr character
+            while i < n and curr_char == chars[i]:
+                count += 1
+                i += 1
+
+            # now we have the alphabet and the count, assign it
+            chars[index] = curr_char
+            index += 1
+            if count > 1:  # should be present only if value greater than 1
+                str_count = str(count)
+                for c in range(len(str_count)):
+                    chars[index] = str_count[c]
+                    index += 1
+
+        return index
