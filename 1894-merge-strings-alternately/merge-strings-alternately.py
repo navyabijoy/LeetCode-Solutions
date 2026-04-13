@@ -1,11 +1,15 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        result =[] #create an array to store the strings
-        i=0
-        while i <len(word1) or i<len(word2): #since i=0
-            if i<len(word1):
-                result.append(word1[i])
-            if i<len(word2):
-                result.append(word2[i])
-            i+=1 #i traverses through both the strings and alternatively adds the 'i' character in the string, and i value increases
-        return ''.join(result)      
+        res = []
+        ptr1 = 0
+        ptr2 = 0
+        while word1 and word2 and ptr1 < len(word1) and ptr2 < len(word2):
+            res.append(word1[ptr1])
+            res.append(word2[ptr2])
+            ptr1 += 1
+            ptr2 += 1
+        
+        res.append(word1[ptr1:])
+        res.append(word2[ptr2:])
+        
+        return "".join(res)
