@@ -5,19 +5,11 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def __init__(self):
-        self.height = 0
-
-    def traverse(self, root):
-        if root is None:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
             return 0
         
-        leftHeight = self.traverse(root.left)
-        rightHeight =  self.traverse(root.right)
-        self.height = max(leftHeight, rightHeight) + 1
-        return self.height
+        left = self.maxDepth(root.left) + 1
+        right = self.maxDepth(root.right) + 1
 
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        depth = 0
-        self.traverse(root)
-        return self.height
+        return max(left, right)
