@@ -1,24 +1,35 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        ROWS, COLS = len(board), len(board[0])
+        rows = len(board)
+        cols = len(board[0])
         path = set()
 
-        def backtrack(i,j,k):
-            if k == len(word):
+        def backtrack(r, c, i):
+            if i == len(word):
                 return True
-            if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[k]:
+
+            if (
+                0 > r
+                or r >= rows
+                or 0 > c
+                or c >= cols
+                or board[r][c] != word[i]
+                or (r, c) in path
+            ):
                 return False
-            
-            temp = board[i][j]
-            board[i][j] = ''
-            
-            if backtrack(i+1, j, k+1) or backtrack(i-1, j, k+1) or backtrack(i, j+1, k+1) or backtrack(i, j-1, k+1):
-                return True
-            
-            board[i][j] = temp
-            return False
-        for r in range(ROWS):
-            for c in range(COLS):
-                if backtrack(r,c,0):
+
+            path.add((r, c))
+            res = (
+                backtrack(r + 1, c, i + 1)
+                or backtrack(r - 1, c, i + 1)
+                or backtrack(r, c + 1, i + 1)
+                or backtrack(r, c - 1, i + 1)
+            )
+            path.remove((r,c))
+            return res
+
+        for i in range(rows):
+            for j in range(cols):
+                if backtrack(i, j, 0):
                     return True
         return False
