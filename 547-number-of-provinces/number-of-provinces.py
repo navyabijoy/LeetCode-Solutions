@@ -1,22 +1,25 @@
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         n = len(isConnected)
-        adj = defaultdict(list)
         vis = [False] * n
-        count = 0
-        for i in range(n):
-            for j in range(n):
+        adj = defaultdict(list)
+        count = 0 # to count the province
+        for i in range(n): # [[1,1,0]
+            for j in range(n): # [[1]
                 if isConnected[i][j] == 1 and i != j:
                     adj[i].append(j)
-                    adj[j].append(i)
+                    adj[j].append(i) # to keep track of nodes connected to eo
+        
         for i in range(n):
-            if vis[i] != True:
+            if vis[i] == False:
                 count += 1
-                self.dfs(i,adj,vis,isConnected, n,count)
+                self.dfs(i, vis, adj)
         return count
 
-    def dfs(self, node, adj, visited, mat, n, count):
-        visited[node] = True
+    def dfs(self, node, vis, adj):
+        vis[node] = True # mark the node visited since traversal is starting
         for nei in adj[node]:
-            if not visited[nei]:
-                self.dfs(nei, adj, visited, mat, n, count)
+            if not vis[nei]:
+                self.dfs(nei, vis, adj)
+
+                
