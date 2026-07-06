@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal">Binary Tree Zigzag Level Order Traversal</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given the <code>root</code> of a binary tree, return <em>the zigzag level order traversal of its nodes&#39; values</em>. (i.e., from left to right, then right to left for the next level and alternate between).</p>
+# 103. Binary Tree Zigzag Level Order Traversal
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+
+**Topics:** Tree, Breadth-First Search, Binary Tree
+
+---
+
+<p>Given the <code>root</code> of a binary tree, return <em>the zigzag level order traversal of its nodes&#39; values</em>. (i.e., from left to right, then right to left for the next level and alternate between).</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
@@ -29,3 +37,8 @@
 	<li>The number of nodes in the tree is in the range <code>[0, 2000]</code>.</li>
 	<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
 </ul>
+
+
+---
+
+**My Solution:** [103-Binary-Tree-Zigzag-Level-Order-Traversal.py](./103-Binary-Tree-Zigzag-Level-Order-Traversal.py)
