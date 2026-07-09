@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list">Remove Nth Node From End of List</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given the <code>head</code> of a linked list, remove the <code>n<sup>th</sup></code> node from the end of the list and return its head.</p>
+# 19. Remove Nth Node From End of List
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+
+**Topics:** Linked List, Two Pointers
+
+---
+
+<p>Given the <code>head</code> of a linked list, remove the <code>n<sup>th</sup></code> node from the end of the list and return its head.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
@@ -34,3 +42,8 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Could you do this in one pass?</p>
+
+
+---
+
+**My Solution:** [19-Remove-Nth-Node-From-End-of-List.py](./19-Remove-Nth-Node-From-End-of-List.py)
