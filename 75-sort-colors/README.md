@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/sort-colors">Sort Colors</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given an array <code>nums</code> with <code>n</code> objects colored red, white, or blue, sort them <strong><a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in-place</a> </strong>so that objects of the same color are adjacent, with the colors in the order red, white, and blue.</p>
+# 75. Sort Colors
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/sort-colors/)
+
+**Topics:** Array, Two Pointers, Sorting
+
+---
+
+<p>Given an array <code>nums</code> with <code>n</code> objects colored red, white, or blue, sort them <strong><a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in-place</a> </strong>so that objects of the same color are adjacent, with the colors in the order red, white, and blue.</p>
 
 <p>We will use the integers <code>0</code>, <code>1</code>, and <code>2</code> to represent the color red, white, and blue, respectively.</p>
 
@@ -30,3 +38,8 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong>&nbsp;Could you come up with a one-pass algorithm using only&nbsp;constant extra space?</p>
+
+
+---
+
+**My Solution:** [75-Sort-Colors.py](./75-Sort-Colors.py)
