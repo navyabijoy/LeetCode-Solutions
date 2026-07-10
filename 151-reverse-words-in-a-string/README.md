@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/reverse-words-in-a-string">Reverse Words in a String</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given an input string <code>s</code>, reverse the order of the <strong>words</strong>.</p>
+# 151. Reverse Words in a String
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/reverse-words-in-a-string/)
+
+**Topics:** Two Pointers, String
+
+---
+
+<p>Given an input string <code>s</code>, reverse the order of the <strong>words</strong>.</p>
 
 <p>A <strong>word</strong> is defined as a sequence of non-space characters. The <strong>words</strong> in <code>s</code> will be separated by at least one space.</p>
 
@@ -41,3 +49,8 @@
 
 <p>&nbsp;</p>
 <p><b data-stringify-type="bold">Follow-up:&nbsp;</b>If the string data type is mutable in your language, can&nbsp;you solve it&nbsp;<b data-stringify-type="bold">in-place</b>&nbsp;with&nbsp;<code data-stringify-type="code">O(1)</code>&nbsp;extra space?</p>
+
+
+---
+
+**My Solution:** [151-Reverse-Words-in-a-String.py](./151-Reverse-Words-in-a-String.py)
