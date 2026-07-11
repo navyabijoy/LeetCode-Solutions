@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/combinations">Combinations</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given two integers <code>n</code> and <code>k</code>, return <em>all possible combinations of</em> <code>k</code> <em>numbers chosen from the range</em> <code>[1, n]</code>.</p>
+# 77. Combinations
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/combinations/)
+
+**Topics:** Backtracking
+
+---
+
+<p>Given two integers <code>n</code> and <code>k</code>, return <em>all possible combinations of</em> <code>k</code> <em>numbers chosen from the range</em> <code>[1, n]</code>.</p>
 
 <p>You may return the answer in <strong>any order</strong>.</p>
 
@@ -27,3 +35,8 @@ Note that combinations are unordered, i.e., [1,2] and [2,1] are considered to be
 	<li><code>1 &lt;= n &lt;= 20</code></li>
 	<li><code>1 &lt;= k &lt;= n</code></li>
 </ul>
+
+
+---
+
+**My Solution:** [77-Combinations.py](./77-Combinations.py)
