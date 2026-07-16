@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/next-permutation">Next Permutation</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>A <strong>permutation</strong> of an array of integers is an arrangement of its members into a sequence or linear order.</p>
+# 31. Next Permutation
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/next-permutation/)
+
+**Topics:** Array, Two Pointers
+
+---
+
+<p>A <strong>permutation</strong> of an array of integers is an arrangement of its members into a sequence or linear order.</p>
 
 <ul>
 	<li>For example, for <code>arr = [1,2,3]</code>, the following are all the permutations of <code>arr</code>: <code>[1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1]</code>.</li>
@@ -45,3 +53,8 @@
 	<li><code>1 &lt;= nums.length &lt;= 100</code></li>
 	<li><code>0 &lt;= nums[i] &lt;= 100</code></li>
 </ul>
+
+
+---
+
+**My Solution:** [31-Next-Permutation.py](./31-Next-Permutation.py)
