@@ -3,16 +3,22 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        l , r = 0, len(matrix)-1
-        while l < r:
-            for i in range(r-l):
-                top, bottom = l , r 
-                topLeft = matrix[top][l+i]
-                matrix[top][l+i] = matrix[bottom-i][l]
-                matrix[bottom-i][l] = matrix[bottom][r-i]
-                matrix[bottom][r-i] =  matrix[top+i][r]
-                matrix[top+i][r] = topLeft
-            l += 1
-            r -= 1
-        return matrix
+        # step 1 : transpose (converts rows -> cols)
+        
+        m, n = len(matrix[0]), len(matrix)
+        for i in range(m):
+            for j in range(i, n): # first triangle
+                matrix[i][j], matrix[j][i] =  matrix[j][i],  matrix[i][j]
+                # swap values to change in place
+        
+        # step 2 : reverse rows
+        for row in matrix:
+            row.reverse()
+            # start = 0
+            # end = n - 1
+            # while start < end:
+            #     row[start], row[end] = row[end], row[start]
+            #     start += 1
+            #     end -= 1
+            
         
