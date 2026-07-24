@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/search-in-rotated-sorted-array">Search in Rotated Sorted Array</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>There is an integer array <code>nums</code> sorted in ascending order (with <strong>distinct</strong> values).</p>
+# 33. Search in Rotated Sorted Array
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
+**Topics:** Array, Binary Search
+
+---
+
+<p>There is an integer array <code>nums</code> sorted in ascending order (with <strong>distinct</strong> values).</p>
 
 <p>Prior to being passed to your function, <code>nums</code> is <strong>possibly left rotated</strong> at an unknown index <code>k</code> (<code>1 &lt;= k &lt; nums.length</code>) such that the resulting array is <code>[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]</code> (<strong>0-indexed</strong>). For example, <code>[0,1,2,4,5,6,7]</code> might be left rotated by&nbsp;<code>3</code>&nbsp;indices and become <code>[4,5,6,7,0,1,2]</code>.</p>
 
@@ -27,3 +35,8 @@
 	<li><code>nums</code> is an ascending array that is possibly rotated.</li>
 	<li><code>-10<sup>4</sup> &lt;= target &lt;= 10<sup>4</sup></code></li>
 </ul>
+
+
+---
+
+**My Solution:** [33-Search-in-Rotated-Sorted-Array.py](./33-Search-in-Rotated-Sorted-Array.py)
