@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/rotate-list">Rotate List</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given the <code>head</code> of a linked&nbsp;list, rotate the list to the right by <code>k</code> places.</p>
+# 61. Rotate List
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/rotate-list/)
+
+**Topics:** Linked List, Two Pointers
+
+---
+
+<p>Given the <code>head</code> of a linked&nbsp;list, rotate the list to the right by <code>k</code> places.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
@@ -23,3 +31,8 @@
 	<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
 	<li><code>0 &lt;= k &lt;= 2 * 10<sup>9</sup></code></li>
 </ul>
+
+
+---
+
+**My Solution:** [61-Rotate-List.py](./61-Rotate-List.py)
