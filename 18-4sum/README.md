@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/4sum">4Sum</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given an array <code>nums</code> of <code>n</code> integers, return <em>an array of all the <strong>unique</strong> quadruplets</em> <code>[nums[a], nums[b], nums[c], nums[d]]</code> such that:</p>
+# 18. 4Sum
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/4sum/)
+
+**Topics:** Array, Two Pointers, Sorting
+
+---
+
+<p>Given an array <code>nums</code> of <code>n</code> integers, return <em>an array of all the <strong>unique</strong> quadruplets</em> <code>[nums[a], nums[b], nums[c], nums[d]]</code> such that:</p>
 
 <ul>
 	<li><code>0 &lt;= a, b, c, d&nbsp;&lt; n</code></li>
@@ -31,3 +39,8 @@
 	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 	<li><code>-10<sup>9</sup> &lt;= target &lt;= 10<sup>9</sup></code></li>
 </ul>
+
+
+---
+
+**My Solution:** [18-4Sum.py](./18-4Sum.py)
