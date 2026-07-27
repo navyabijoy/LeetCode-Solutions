@@ -1,4 +1,12 @@
-<h2><a href="https://leetcode.com/problems/simplify-path">Simplify Path</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>You are given an <em>absolute</em> path for a Unix-style file system, which always begins with a slash <code>&#39;/&#39;</code>. Your task is to transform this absolute path into its <strong>simplified canonical path</strong>.</p>
+# 71. Simplify Path
+
+🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/simplify-path/)
+
+**Topics:** String, Stack
+
+---
+
+<p>You are given an <em>absolute</em> path for a Unix-style file system, which always begins with a slash <code>&#39;/&#39;</code>. Your task is to transform this absolute path into its <strong>simplified canonical path</strong>.</p>
 
 <p>The <em>rules</em> of a Unix-style file system are as follows:</p>
 
@@ -89,3 +97,8 @@
 	<li><code>path</code> consists of English letters, digits, period <code>&#39;.&#39;</code>, slash <code>&#39;/&#39;</code> or <code>&#39;_&#39;</code>.</li>
 	<li><code>path</code> is a valid absolute Unix path.</li>
 </ul>
+
+
+---
+
+**My Solution:** [71-Simplify-Path.py](./71-Simplify-Path.py)
