@@ -1,12 +1,4 @@
-# 230. Kth Smallest Element in a BST
-
-🟡 **Medium** &nbsp;|&nbsp; [View on LeetCode](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
-
-**Topics:** Tree, Depth-First Search, Binary Search Tree, Binary Tree
-
----
-
-<p>Given the <code>root</code> of a binary search tree, and an integer <code>k</code>, return <em>the</em> <code>k<sup>th</sup></code> <em>smallest value (<strong>1-indexed</strong>) of all the values of the nodes in the tree</em>.</p>
+<h2><a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst">Kth Smallest Element in a BST</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>Given the <code>root</code> of a binary search tree, and an integer <code>k</code>, return <em>the</em> <code>k<sup>th</sup></code> <em>smallest value (<strong>1-indexed</strong>) of all the values of the nodes in the tree</em>.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
@@ -34,8 +26,3 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> If the BST is modified often (i.e., we can do insert and delete operations) and you need to find the kth smallest frequently, how would you optimize?</p>
-
-
----
-
-**My Solution:** [230-Kth-Smallest-Element-in-a-BST.py](./230-Kth-Smallest-Element-in-a-BST.py)
