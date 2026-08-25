@@ -7,28 +7,28 @@
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         if root is None:
-            return root
-
-        # find the node to delete
-        if key < root.val:
+            return None
+        
+        if root.val > key:
             root.left = self.deleteNode(root.left, key)
-        elif key > root.val:
+        elif root.val < key:
             root.right = self.deleteNode(root.right, key)
         else:
-            #we have found the node
-            if not root.left:
+            # no left child
+            if root.left is None:
                 return root.right
-            elif not root.right:
+            
+            # no right child
+            if root.right is None:
                 return root.left
+            
+            # the node has two childern
+            succ = root.right
+            while succ.left:
+                succ = succ.left
+            
+            root.val = succ.val
+            root.right = self.deleteNode(root.right, succ.val)
 
-            #find the min from right subtree
-            curr = root.right
-            while curr.left:
-                curr = curr.left # go to the left most node
-            root.val = curr.val # root is the node that is supposed to be deleted
-            root.right = self.deleteNode(root.right, root.val)
         return root
-
-
-        
-        
+            
